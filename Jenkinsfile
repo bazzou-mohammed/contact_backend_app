@@ -20,15 +20,22 @@ pipeline {
                 bat "mvn -Dmaven.test.failure.ignore=true clean package" 
             }
 
-            post {
-                // Si Maven a pu exécuter les tests, même si certains ont échoué,
-                // enregistrer les résultats des tests et archiver le fichier jar.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-            }
         }
+        stage('Test') {
+            steps {
+                // Pour exécuter Maven sur un agent Windows, utiliser
+                bat "mvn test" 
+            }
+
+        }
+        stage('Deploy') {
+            steps {
+                // Pour exécuter Maven sur un agent Windows, utiliser
+                echo. "Artefact deployed" 
+            }
+
+        }
+       
     }
 }
 
