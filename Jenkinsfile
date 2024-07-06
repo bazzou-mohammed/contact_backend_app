@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        // Install the Maven version configured as "M3" and add it to the path.
+        // Installer la version Maven configurée en tant que "M3" et l'ajouter au chemin d'accès.
         jdk 'jdk-11'
         maven 'maven3'
     }
@@ -10,19 +10,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Get some code from a GitHub repository
-                 git branch: 'main', url: 'https://github.com/bazzou-mohammed/contact_backend_app.git'
+                // Récupérer du code à partir d'un dépôt GitHub
+                git branch: 'main', url: 'https://github.com/bazzou-mohammed/contact_backend_app.git'
 
-                // Run Maven on a Unix agent.
-                //sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                // Exécuter Maven sur un agent Unix.
+                // sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
-                // To run Maven on a Windows agent, use
+                // Pour exécuter Maven sur un agent Windows, utiliser
                 bat "mvn -Dmaven.test.failure.ignore=true clean package" 
             }
 
             post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
+                // Si Maven a pu exécuter les tests, même si certains ont échoué,
+                // enregistrer les résultats des tests et archiver le fichier jar.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
@@ -31,3 +31,4 @@ pipeline {
         }
     }
 }
+
