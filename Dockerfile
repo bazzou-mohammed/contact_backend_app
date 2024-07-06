@@ -2,10 +2,10 @@
 FROM apachedirectory/maven-build:jdk-17
 
 # Set the working directory in the container
-WORKDIR /usr/app/
+WORKDIR /app
 
 # Copy all files
-COPY target/contact-backend-app.jar  /usr/app/
+COPY . /app
 
 # Make port 9090 available to the world outside this container
 EXPOSE 9090
