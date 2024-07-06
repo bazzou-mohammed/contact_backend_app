@@ -17,7 +17,7 @@ pipeline {
                 // sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // Pour exécuter Maven sur un agent Windows, utiliser
-                bat "mvn -Dmaven.test.failure.ignore=true clean package" 
+                bat "mvn clean package" 
             }
 
         }
