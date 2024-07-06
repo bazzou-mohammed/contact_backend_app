@@ -21,18 +21,16 @@ pipeline {
             }
 
         }
-        stage('Test') {
+        stage('SonarQube Analysis') {
             steps {
-                // Pour exécuter Maven sur un agent Windows, utiliser
-                bat "mvn test" 
+                // Execute SonarQube analysis
+                script {
+                    withSonarQubeEnv('sonar_server') {
+                        bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                    }
+                }
             }
-
-        }
-        stage('Deploy') {
-            steps {
-                // Pour exécuter Maven sur un agent Windows, utiliser
-                echo " Artefact deployed " 
-            }
+                
 
         }
        
