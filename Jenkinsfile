@@ -31,7 +31,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Pour exécuter Maven sur un agent Windows, utiliser
-                echo. "Artefact deployed" 
+                echo "Artefact deployed" 
             }
 
         }
