@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Checkout Code & Build') {
             steps {
                 // Récupérer du code à partir d'un dépôt GitHub
                 git branch: 'main', url: 'https://github.com/bazzou-mohammed/contact_backend_app.git'
