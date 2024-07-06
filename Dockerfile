@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM apachedirectory/maven-build:jdk-17
+FROM openjdk:17
 
 # Set the working directory in the container
 WORKDIR /app
