@@ -2,13 +2,13 @@
 FROM openjdk:17
 
 # Set the working directory in the container
-WORKDIR /usr/app/
+WORKDIR /app
 
 # Copy all files
-COPY target/contact-backend-app.jar /usr/app/
+COPY target/contact-backend-app.jar /app
 
 # Make port 9090 available to the world outside this container
 EXPOSE 9090
 
 # Run the .jar file
-ENTRYPOINT ["java", "-jar", "contact-backend-app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/target/contact-backend-app.jar"]
