@@ -12,3 +12,5 @@ EXPOSE 9090
 
 # Run the .jar file
 ENTRYPOINT ["java", "-jar", "/app/target/contact-backend-app.jar"]
+
+
