@@ -5,10 +5,10 @@ FROM openjdk:17
 WORKDIR /usr/app/
 
 # Copy all files
-COPY C:\Users\user\Desktop\backend-app\contact_backend_app\target\contact-backend-app.jar /usr/app/
+COPY C:/Users/user/Desktop/backend-app/contact_backend_app/target/contact-backend-app.jar /usr/app/
 
 # Make port 9090 available to the world outside this container
 EXPOSE 9090
 
 # Run the .jar file
-ENTRYPOINT ["java", "-jar", "contact-backend-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "contact-backend-app.jar"]
