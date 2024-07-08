@@ -35,9 +35,10 @@ pipeline {
             steps {
                 script {
                     // Login to Docker Hub
-                    withDockerRegistry(credentialsId: 'docker_credentianls', toolName: 'Docker') {
-                        bat 'docker build -t bazzoumohammed/bazzoum_repo:v123 .'
-                        
+                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        bat "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+                        bat "docker build -t bazzoumohammed/bazzoum_repo:v124 ."
+                        bat "docker push bazzoumohammed/bazzoum_repo:v124"
                     }
                 }
             }
