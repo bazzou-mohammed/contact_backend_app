@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:17
+FROM openjdk:8
 
 # Set the working directory in the container
 WORKDIR /app
@@ -11,6 +11,7 @@ COPY target/contact-backend-app.jar /app
 EXPOSE 9090
 
 # Run the .jar file
-ENTRYPOINT ["java", "-jar", "/app/target/contact-backend-app.jar"]
+ENTRYPOINT ["java", "-jar", "contact-backend-app.jar"]
+
 
 
