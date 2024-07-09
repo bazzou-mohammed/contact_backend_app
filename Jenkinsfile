@@ -42,22 +42,22 @@ pipeline {
                 }
             }          
         }
-    //     stage('Image build') {
-    //         steps {
-    //             script {
-    //                 // Login to Docker Hub
-    //                 withDockerRegistry(credentialsId: 'docker_credentianls') {
-    //                     bat 'docker build -t bazzoumohammed/imagepush:v1.0 .'
-    //                 }
-    //             }
-    //         }
-    //    }
+        stage('Image build') {
+            steps {
+                script {
+                    // Login to Docker Hub
+                    withDockerRegistry(credentialsId: 'docker_credentianls') {
+                        bat 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
+                    }
+                }
+            }
+       }
     //    stage('Push') {
     //         steps {
     //             script {
     //                 // Login to Docker Hub
     //                 withDockerRegistry(credentialsId: 'docker_credentianls') {
-    //                     //bat 'docker push bazzoumohammed/java_contact_app:v1.0'
+    //                     //bat 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}'
     //                 }
     //             }
     //         }
