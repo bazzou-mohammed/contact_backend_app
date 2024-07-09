@@ -43,7 +43,7 @@ pipeline {
                     // Login to Docker Hub
                     withDockerRegistry(credentialsId: 'docker_credentianls') {
                         bat 'docker build -t bazzoumohammed/bazzoum_repo:v123 .'
-                        bat 'docker push bazzoumohammed/bazzoum_repo:v123'
+                        //bat 'docker push bazzoumohammed/bazzoum_repo:v123'
                     }
                 }
             }
