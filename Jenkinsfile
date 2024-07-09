@@ -43,7 +43,7 @@ pipeline {
                     // Login to Docker Hub
                     withDockerRegistry(credentialsId: 'docker_credentianls') {
                         bat 'docker build -t java_contact_app .'
-                        bat 'docker push bazzoumohammed/java_contact_app:v1.0'
+                        //bat 'docker push bazzoumohammed/java_contact_app:v1.0'
                     }
                 }
             }
