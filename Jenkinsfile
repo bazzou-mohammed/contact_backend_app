@@ -40,17 +40,14 @@ pipeline {
         stage('Login & Build Tag push Docker Image') {
             steps {
                 script {
-                    // Login to Docker hub
-                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        bat "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
-                        bat 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
-                        bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
-                       // sh "docker rmi ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} || true"
+                    // Login to Docker Hub
+                    withDockerRegistry(credentialsId: 'docker_credentianls') {
+                        bat 'docker build -t bazzoumohammed/bazzoum_repo:v123 .'
+                        bat 'docker push bazzoumohammed/bazzoum_repo:v123'
                     }
                 }
             }
-        }
-       
+       }
     }
 }
 
