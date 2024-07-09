@@ -64,13 +64,14 @@ pipeline {
                 }
             }
        }
-    //    stage('Deploy') {
-    //         steps {
-    //             script {
-                    
-    //             }
-    //         }
-    //    }
+       stage('Deploy') {
+            steps {
+                script {
+                    // Local Déploy 
+                    bat 'docker run -d -p 9090:8080 --name contact_backend_app %DOCKER_REGISTRY%/%DOCKER_IMAGE_NAME%:%DOCKER_IMAGE_TAG%'               
+                }
+            }
+       }
     }
 }
 
