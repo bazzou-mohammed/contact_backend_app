@@ -6,6 +6,12 @@ pipeline {
         jdk 'jdk-17'
         maven 'maven3'
     }
+    environment {
+        DOCKER_CREDENTIALS_ID = "docker-credentials"
+        DOCKER_REGISTRY = "bazzoumohammed"
+        DOCKER_IMAGE_NAME = "contact_backend_app"
+        DOCKER_IMAGE_TAG = "latest"
+    }
 
     stages {
         stage('Checkout Code & Build') {
@@ -31,13 +37,15 @@ pipeline {
                 }
             }          
         }
-        stage('Build & Tag Docker Image') {
+        stage('Login & Build Tag push Docker Image') {
             steps {
                 script {
-                    // Login to Docker Hub
-                    withDockerRegistry(credentialsId: 'docker_credentianls') {
-                        bat 'docker build -t bazzoumohammed/bazzoum_repo:v124 .'
-                        bat 'docker push bazzoumohammed/bazzoum_repo:v123'
+                    // Login to Docker hub
+                    withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        bat "echo $PASSWORD | docker login -u $USERNAME --password-stdin"
+                        bat 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
+                        bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+                       // sh "docker rmi ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} || true"
                     }
                 }
             }
