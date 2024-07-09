@@ -59,7 +59,7 @@ pipeline {
                 script {
                     // Login to Docker Hub
                     withDockerRegistry(credentialsId: 'docker_credentianls') {
-                        bat 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}'
+                        bat 'docker push %DOCKER_REGISTRY%/%DOCKER_IMAGE_NAME%:%DOCKER_IMAGE_TAG%'
                     }
                 }
             }
