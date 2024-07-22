@@ -92,8 +92,11 @@ pipeline {
                     // Chemin relatif du playbook Ansible
                     def playbook = 'test_ansible.yml'
                     
-                    // Exécuter le playbook Ansible via WSL
-                    bat "wsl ansible-playbook ${playbook}"
+                    // Exécuter le playbook Ansible via WSL en utilisant PowerShell
+                    def command = """
+                    powershell.exe -Command "wsl ansible-playbook ${playbook}"
+                    """
+                    bat command
                 }
             }
         }
