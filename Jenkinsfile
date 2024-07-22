@@ -89,9 +89,11 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 script {
-                    // Execute the Ansible playbook using WSL
+                    // Chemin relatif du playbook Ansible
                     def playbook = 'test_ansible.yml'
-                    sh "wsl ansible-playbook ${playbook}"
+                    
+                    // Exécuter le playbook Ansible via WSL
+                    bat "wsl ansible-playbook ${playbook}"
                 }
             }
         }
