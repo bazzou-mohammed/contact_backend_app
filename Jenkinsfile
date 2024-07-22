@@ -89,14 +89,11 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 script {
-                    // Chemin relatif du playbook Ansible
+
+                    // Execute the Ansible command using elevated PowerShell
                     def playbook = 'test_ansible.yml'
-                    
-                    // Exécuter le playbook Ansible via WSL en utilisant PowerShell
-                    def command = """
-                    powershell.exe -Command "wsl ansible-playbook ${playbook}"
-                    """
-                    bat command
+                    def ansibleVersionCmd = "powershell.exe -Command \"Start-Process wsl -ArgumentList 'wsl ansible-playbook ${playbook}' -Verb RunAs\""
+                    bat ansibleVersionCmd
                 }
             }
         }
