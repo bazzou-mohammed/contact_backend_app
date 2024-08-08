@@ -75,6 +75,8 @@
 //     }
 // }
 
+
+
 pipeline {
     agent any
 
@@ -86,17 +88,17 @@ pipeline {
             }
         }
 
-        stage('Run Ansible Playbook') {
-            steps {
-                script {
+        // stage('Run Ansible Playbook') {
+        //     steps {
+        //         script {
 
-                    // Execute the Ansible command using elevated PowerShell
-                    def playbook = 'test_ansible.yml'
-                    def ansibleVersionCmd = "powershell.exe -Command \"Start-Process wsl -ArgumentList 'wsl ansible-playbook ${playbook}' -Verb RunAs\""
-                    bat ansibleVersionCmd
-                }
-            }
-        }
+        //             // Execute the Ansible command using elevated PowerShell
+        //             def playbook = 'test_ansible.yml'
+        //             def ansibleVersionCmd = "powershell.exe -Command \"Start-Process wsl -ArgumentList 'wsl ansible-playbook ${playbook}' -Verb RunAs\""
+        //             bat ansibleVersionCmd
+        //         }
+        //     }
+        // }
 
         // stage('Check Ansible Version') {
         //     steps {
