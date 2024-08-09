@@ -22,13 +22,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat "mvn clean package" 
+                sh "mvn clean package" 
             }
 
         }
         stage('Test') {
             steps {
-                bat "mvn test" 
+                sh "mvn test" 
             }
 
         }
@@ -37,7 +37,7 @@ pipeline {
         //         // Execute SonarQube analysis
         //         script {
         //             withSonarQubeEnv('sonar_server') {
-        //                 bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+        //                 sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
         //             }
         //         }
         //     }          
