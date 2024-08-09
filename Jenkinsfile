@@ -55,16 +55,16 @@ pipeline {
                 }
             }
        }
-    //    stage('Push') {
-    //         steps {
-    //             script {
-    //                 // Login to Docker Hub
-    //                 withDockerRegistry(credentialsId: 'docker_credentianls') {
-    //                     bat 'docker push %DOCKER_REGISTRY%/%DOCKER_IMAGE_NAME%:%DOCKER_IMAGE_TAG%'
-    //                 }
-    //             }
-    //         }
-    //    }
+       stage('Push') {
+            steps {
+                script {
+                    // Login to Docker Hub
+                    withDockerRegistry(credentialsId: 'docker_credentianls') {
+                        sh 'docker push %DOCKER_REGISTRY%/%DOCKER_IMAGE_NAME%:%DOCKER_IMAGE_TAG%'
+                    }
+                }
+            }
+       }
     //    stage('Deploy') {
     //         steps {
     //             script {
