@@ -7,12 +7,12 @@ pipeline {
         jdk 'jdk-17'
         maven 'maven3'
     }
-    // environment {
-    //     DOCKER_CREDENTIALS_ID = "docker-credentials"
-    //     DOCKER_REGISTRY = "bazzoumohammed"
-    //     DOCKER_IMAGE_NAME = "contact_backend_app"
-    //     DOCKER_IMAGE_TAG = "latest"
-    // }
+    environment {
+        DOCKER_CREDENTIALS_ID = "docker-credentials"
+        DOCKER_REGISTRY = "bazzoumohammed"
+        DOCKER_IMAGE_NAME = "contact_backend_app"
+        DOCKER_IMAGE_TAG = "latest"
+    }
 
     stages {
         stage('Checkout') {
@@ -43,18 +43,18 @@ pipeline {
                 }
             }          
         }
-    //     stage('Image build') {
-    //         steps {
-    //             script {
-    //                 // Login to Docker Hub
-    //                 withDockerRegistry(credentialsId: 'docker_credentianls') {
-    //                     //bat 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
-    //                     bat 'docker build -t %DOCKER_REGISTRY%/%DOCKER_IMAGE_NAME%:%DOCKER_IMAGE_TAG% .'
+        stage('Image build') {
+            steps {
+                script {
+                    // Login to Docker Hub
+                    withDockerRegistry(credentialsId: 'docker_credentianls') {
+                        //bat 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
+                        sh 'docker build -t %DOCKER_REGISTRY%/%DOCKER_IMAGE_NAME%:%DOCKER_IMAGE_TAG% .'
 
-    //                 }
-    //             }
-    //         }
-    //    }
+                    }
+                }
+            }
+       }
     //    stage('Push') {
     //         steps {
     //             script {
