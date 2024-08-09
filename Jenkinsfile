@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Installer la version Maven configurée en tant que "M3" et l'ajouter au chemin d'accès.
-        jdk 'jdk-17'
+        jdk 'jdk11'
         maven 'maven3'
     }
     // environment {
