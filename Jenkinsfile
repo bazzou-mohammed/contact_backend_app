@@ -47,8 +47,7 @@ pipeline {
             steps {
                 script {
                     // Login to Docker Hub
-                    withDockerRegistry(credentialsId: 'docker_credentianls') {
-                        //bat 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .'
+                    withDockerRegistry(credentialsId: DOCKER_CREDENTIALS_ID) {
                         sh 'docker build -t %DOCKER_REGISTRY%/%DOCKER_IMAGE_NAME%:%DOCKER_IMAGE_TAG% .'
 
                     }
